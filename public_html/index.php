@@ -12,7 +12,7 @@
 <body>
 
 <!--//navigacioni meni-->
-<?php include_once("../templates/header.php");?>
+<?php include_once("./templates/header.php");?>
 <br></br>
 <div class="container">
 <div class="card mx-auto" style="width:18rem;">
