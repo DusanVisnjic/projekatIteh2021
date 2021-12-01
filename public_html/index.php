@@ -3,7 +3,7 @@
     <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistem za upravljanje zalihama</title>
+    <title>Sistem za rentiranje filmova</title>
    
     
 <script type="text/javascript" src="./js/main.js"></script>   
@@ -30,7 +30,7 @@
             <input type="password" class="form-control" id="exampleInputPassword1">
           </div>
           <button type="submit" class="btn btn-primary"><i class="fa fa-key">&nbsp;</i>Login</button>
-          <span><a href="#">Registruj se</a></span>
+          <span><a href="register.php">Registruj se</a></span>
         </form>
   </div>
   <div class="card-footer"><a href="#">Zaboravio password?</a></div>
