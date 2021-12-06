@@ -28,6 +28,7 @@ class User
         }
     }
     public function createUserAccount($username,$email,$password,$usertype){
+        
         if($this->emailExist($email))
         {
             return "EMAIL_ALREADY_EXISTS";
@@ -53,6 +54,7 @@ class User
         }
     }
     public function userLogin($email,$password){
+        
         $pre_stmt=$this->con->prepare("SELECT id,username,password,last_login FROM user WHERE email=?");
         $pre_stmt->bind_param("s",$email);
         $pre_stmt->execute() or die($this->con->error);
@@ -91,9 +93,9 @@ class User
     }
 
 }
-////$user=new User();
-//cho    $user->createUserAccount("test","testi@gmail.com","d1234", "Admin");
+//$user=new User();
+//echo $user->createUserAccount("test5","testi5@gmail.com","d12345787jkj", "Admin");
 ////echo    $user->userLogin("testi@gmail.com","d1234");
 //echo $_SESSION["username"];
-
+//echo $user->userLogin("testasdi4@gmail.com","d1234578799999");
 ?>

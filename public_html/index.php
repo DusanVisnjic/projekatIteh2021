@@ -15,19 +15,38 @@
 <?php include_once("./templates/header.php");?>
 <br></br>
 <div class="container">
+
+<?php
+  if(isset($_GET["msg"]) AND !empty($_GET["msg"])){
+      ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+               <?php
+               echo $_GET["msg"];
+              ?>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+
+
+
+      <?php
+  }
+?>
+
+
 <div class="card mx-auto" style="width:18rem;">
   <img src="./images/login.png" class="card-img-top mx-auto" alt="Login icon" style="width:60%;">
-  <div class="card-body">
-    
-            <form>
+  <div class="card-body">    
+            <form id="login_form" onsubmit="return false">
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email adresa</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">Nikada necemo podeliti vasu email adresu</div>
+            <input type="email" class="form-control" name="log_email"  id="log_email" >
+            <small id="e_error" class="form-text">Nikada necemo podeliti vasu email adresu</small>
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input type="password" class="form-control" name="log_password" id="log_password">
+            <small id="p_error" class="form-text"></small>
           </div>
           <button type="submit" class="btn btn-primary"><i class="fa fa-key">&nbsp;</i>Login</button>
           <span><a href="register.php">Registruj se</a></span>
@@ -41,5 +60,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script type="text/javascript" src="./js/glavno.js"> </script>
 </body>   
 </html>
