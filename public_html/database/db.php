@@ -9,7 +9,7 @@ class Database
         include_once("konstante.php");
         $this->con=new Mysqli(HOST,USER,PASS,DB);
         if($this->con){
-            echo("connected");
+            
         return $this->con;
     }
     return "DATABASE_CONNECTION_FAIL";

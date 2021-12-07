@@ -93,9 +93,9 @@ class User
     }
 
 }
-//$user=new User();
+//user=new User();
 //echo $user->createUserAccount("test5","testi5@gmail.com","d12345787jkj", "Admin");
-////echo    $user->userLogin("testi@gmail.com","d1234");
+//echo    $user->userLogin("testi@gmail.com","d12345");
 //echo $_SESSION["username"];
 //echo $user->userLogin("testasdi4@gmail.com","d1234578799999");
 ?>

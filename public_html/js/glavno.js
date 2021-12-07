@@ -66,23 +66,22 @@ $(document).ready(function(){
         status=true;
        }
        if(status==true){
-    
          $.ajax({
             url : DOMAIN+"/includes/process.php",
             method:"POST",
-            data: $("register_form").serialize(),
-            success:function(data){
-              if(data=="EMAIL_ALREADY_EXISTS"){
-                alert("Vas email se je vec iskoriscen");
-              }else if(data=="SOME_ERROR"){
-                  alert("Nesto nije pRoslo kako treba");
-              }else{
-                
-                
-                window.location.href=encodeURI(DOMAIN+"/index.php?msg=Reistovani ste, sada mozete da se ulogujete");
-              }
-            }
+            data: $("#register_form").serialize(),
+           success: registracija,
          })
+         function registracija(response){
+          
+          if(response.includes("EMAIL")){
+            alert("Email koj ste uneli je vec iskoriscen");
+          }else if(response.includes("SOME")){
+              alert("Nesto nije proslo kako treba, pokusajte ponovo:)");
+          }else{
+            window.location.href=encodeURI(DOMAIN+"/index.php?msg=Reistovani ste, sada mozete da se ulogujete");
+          }
+        }
        }
      })
      //za login deo
@@ -90,6 +89,11 @@ $(document).ready(function(){
        var status= false;
        var email=$("#log_email");
        var pass=$("#log_password");
+
+
+
+
+
        if(email.val()=="")
        {
         email.addClass("border-danger");
@@ -116,22 +120,24 @@ $(document).ready(function(){
                 $.ajax({
                   url : DOMAIN+"/includes/process.php",
                   method:"POST",
-                  data: $("login_form").serialize(),
-                  success:function(data){
-                    data="NOT_REGISTERED";
-                    if(data=="NOT_REGISTERED"){
-                        email.addClass("border-danger");
-                        $("#e_error").html("<span class='text-danger'>Ne postoji korisnik registrovan na ovaj email</span>");
-                    }else if(data=="PASSWORD_NOT_MATCHED"){
-                          pass.addClass("border-danger");
-                          $("#p_error").html("<span class='text-danger'>Unesite odgovarajuci password</span>");
-                    }else{
-                  
-                     window.location.href=DOMAIN+"/dashboard.php";
-                    }
-                  }
-              })
-        }
+                  data: $("#login_form").serialize(),
+                  success: logovanje,   
+              });
+              function logovanje(response){
+                  if(response.includes("REGISTERED")){
+                    email.addClass("border-danger");
+                    $("#e_error").html("<span class='text-danger'>Ne postoji korisnik registrovan na ovaj email</span>");
+                }else if(response.includes("PASSWORD")){
+                      pass.addClass("border-danger");
+                      $("#p_error").html("<span class='text-danger'>Unesite odgovarajuci password</span>");
+                }else{
+                      window.location.href=DOMAIN+"/dashboard.php";
+              }
+            }
+      }
+
+
+        
        
-     })
     })
+})
