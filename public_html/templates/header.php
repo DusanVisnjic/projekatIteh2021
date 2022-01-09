@@ -9,8 +9,19 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#"><i class="fa fa-home">&nbsp;</i>Početna</a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#"><i class="fa fa-user">&nbsp;</i>Logout</a>
+        
+          <?php
+          if(isset($_SESSION["userid"])){
+            ?> 
+            <li class="nav-item active">
+         
+            <a class="nav-link" href="http://localhost/iteh/projekatIteh/public_html/templates/logout.php"  ><i class="fa fa-user">&nbsp;</i>Logout</a>
+       
+            <?php
+           
+        }
+          ?>
+          
           </li>
       </ul>
     </div>

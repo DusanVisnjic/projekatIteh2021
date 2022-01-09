@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  
     var DOMAIN="http://localhost/iteh/projekatIteh/public_html/";
     $("#register_form").on("submit",function(){
      
@@ -135,9 +136,23 @@ $(document).ready(function(){
               }
             }
       }
-
-
-        
-       
     })
+    
+     //Kategorije
+     
+    function fetch_category(){
+      $.ajax({
+        url : DOMAIN+"/includes/process.php",
+        method:"POST",
+        data: {getCategory:1},
+        success: signaliraj,
+    });
+    function signaliraj(data){
+      $("#parent_cat").html(data);
+    }   
+    }
+    fetch_category(); 
+
+   
+
 })
