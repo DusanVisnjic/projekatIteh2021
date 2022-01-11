@@ -4,11 +4,11 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Nova kategorija</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
         <div class="modal-body">
-          <form id="form_category" onsubmit="return false">
+          <form id="category_form" onsubmit="return false">
               <div class="mb-3">
                 <label >Category</label>
                 <input type="text" class="form-control"name="category_name" id="category_name" aria-describedby="emailHelp">

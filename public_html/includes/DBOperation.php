@@ -37,10 +37,35 @@ class DBOperation
         }
         return "NO_DATA";
     }
+    public function addBrand($brand_name){
+        $pre_stmt=$this->con->prepare("INSERT INTO `brands`(`brand_name`, `status`)  
+                VALUES (?,?)");
+        $status=1;
+        $pre_stmt->bind_param("si",$brand_name,$status);
+        $result=$pre_stmt->execute() or die($this->con->error);
+        if($result){
+            return "BRAND_ADDED";
+        }else{
+            return 0;
+        }
+    }
+    public function addProduct($cid,$bid,$pro_name,$price,$stock,$date){
+        $pre_stmt=$this->con->prepare("INSERT INTO `products`(`cid`, `bid`, `product_name`, `product_price`, `product_stock`, `added_date`, `p_status`)
+         VALUES (?,?,?,?,?,?,?)");
+        $status=1;
+        $pre_stmt->bind_param("iisdisi",$cid,$bid,$pro_name,$price,$stock,$date,$status);
+        $result=$pre_stmt->execute() or die($this->con->error);
+        if($result){
+            return "NEW_PRODUCT_ADDED";
+        }else{
+            return 0;
+        }
+    }
 }
+
 //$opr=new DBOperation;
-//echo $opr->addCategory(3,"Jakne");
-//echo "<pre>";
+//echo $opr->addProduct(3,1,"ku23a",5000,123123,"2022-01-11");
+    
 //print_r($opr->getAllRecord("categories"));
 
 

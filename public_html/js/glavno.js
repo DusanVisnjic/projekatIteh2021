@@ -1,6 +1,7 @@
 $(document).ready(function(){
   
     var DOMAIN="http://localhost/iteh/projekatIteh/public_html/";
+    
     $("#register_form").on("submit",function(){
      
        var status=false;
@@ -137,22 +138,116 @@ $(document).ready(function(){
             }
       }
     })
-    
+      //dodaj kategoriju
+     
      //Kategorije
      
-    function fetch_category(){
+      function fetch_category()  {
+      $.ajax({
+        url: DOMAIN + "/includes/process.php",
+        method: "POST",
+      data: { getCategory: 1 },
+        success: signaliraj,
+      });
+      function signaliraj(data) {
+        var root = "<option value='0'>Koren</option>";
+        var choose = "<option value='0'>Izaberi</option>";
+        $("#parent_cat").html(root+data);
+        $("#select_cat").html(choose+data);
+      }
+    }
+      fetch_category(); 
+
+      //Brend
+     
+      function fetch_brand()  {
+        $.ajax({
+          url: DOMAIN + "/includes/process.php",
+          method: "POST",
+        data: { getBrand: 1 },
+          success: signal,
+        });
+        function signal(data) {
+         
+          var choose = "<option value='0'>Izaberi</option>";
+          
+          $("#select_brand").html(choose+data);
+        }
+      }
+        fetch_brand();
+
+  //nova kategorija
+ $("#category_form").on("submit",function(){
+        if($("#category_name").val()==""){
+          $("#category_name").addClass("border-danger");
+          $("#cat_error").html("<span class='text-danger'>Molim vas unesite ime</span>");
+        }else{
+          $.ajax({
+            url : DOMAIN+"/includes/process.php",
+            method:"POST",
+            data: $("#category_form").serialize(),
+            success: uspeh,   
+        });
+        function uspeh(data){
+          if(data.includes("ADDED")){
+            $("#category_name").removeClass("border-danger");
+            $("#cat_error").html("<span class='text-success'>Uspesno uneta nova kategorija</span>");
+            $("#category_name").val("");
+            fetch_category(); 
+        }else{
+          alert(data);
+        }
+      }
+    }
+ })
+   //novi brend
+ $("#brand_form").on("submit",function(){
+  if($("#brand_name").val()==""){
+    $("#brand_name").addClass("border-danger");
+    $("#brand_error").html("<span class='text-danger'>Molim vas unesite ime</span>");
+  }else{
+    $.ajax({
+      url : DOMAIN+"/includes/process.php",
+      method:"POST",
+      data: $("#brand_form").serialize(),
+      success: uspelo,   
+  });
+  function uspelo(data){
+    if(data.includes("ADDED")){
+      $("#brand_name").removeClass("border-danger");
+      $("#brand_error").html("<span class='text-success'>Uspesno unet nov brend</span>");
+      $("#brand_name").val("");
+      fetch_brand();
+  }else{
+    alert(data);
+  }
+}
+}
+})
+   //novi proizvod
+   $("#product_form").on("submit",function(){
+   // if($("#brand_name").val()==""){
+    //  $("#brand_name").addClass("border-danger");
+    //  $("#brand_error").html("<span class='text-danger'>Molim vas unesite ime</span>");
+   // }else{
       $.ajax({
         url : DOMAIN+"/includes/process.php",
         method:"POST",
-        data: {getCategory:1},
-        success: signaliraj,
+        data: $("#product_form").serialize(),
+        success: uspelo,   
     });
-    function signaliraj(data){
-      $("#parent_cat").html(data);
-    }   
+    function uspelo(data){
+      if(data.includes("ADDED")){
+        //$("#brand_name").removeClass("border-danger");
+        $("#product_error").html("<span class='text-success'>Uspesno unet nov proizvod</span>");
+        $("#product_name").val("");
+        $("#product_price").val("");
+        $("#product_qty").val("");
+    }else{
+      alert(data+"nije uspelo");
     }
-    fetch_category(); 
-
-   
+ // }
+  }
+  })
 
 })
