@@ -129,6 +129,61 @@ if(isset($_POST["update_category"])){
 
     exit();
 }
+if(isset($_POST["manageBrand"])){
+    $m = new Manage();
+    $result=$m->manageRecord("brands");
+    $rows=$result["rows"];
+    if(count($rows)>0){
+        $n=0;
+        foreach($rows as $row){
+            ?>
+            
+            <tr>
+                <td><?php echo ++$n; ?></td>
+                <td><?php echo $row["brand_name"]; ?></td>
+              
+                <td><a href="#" class="btn btn-success btn-sm">Aktivno</a></td>
+                <td>
+                <a href="#" did="<?php echo $row["bid"]; ?>" class="btn btn-danger btn-sm del_brand">Obrisi</a>
+                <a href="#" eid="<?php echo $row["bid"]; ?>" class="btn btn-info btn-sm edit_brand" data-bs-toggle="modal" data-bs-target="#brand">Promeni</a>
+                <!--a href="#" did="<?php echo $row['cid']; ?>" class="btn btn-danger btn-sm del_cat">Obrisi</a>
+               <a href="#" eid="<?php echo $row['cid']; ?>" class="btn btn-info btn-sm edit_cat">Promeni</a-->
+                </td>
+          </tr>
+            <?php
+        }
+    }
+}
+//Obrisi kategoriju
+if(isset($_POST["deleteBrand"])){
+    $m = new Manage();
+    $result=$m->deleteRecord("brands","bid",$_POST["id"]);
+    echo $result;
+    
+
+    exit();
+}
+//uzmi jedan
+if(isset($_POST["updateBrand"])){
+    $m = new Manage();
+    $result=$m->getSingleRecord("brands","bid",$_POST["id"]);
+    echo json_encode($result);
+    
+
+    exit();
+}
+//promeni brend
+if(isset($_POST["update_brand"])){
+    $m = new Manage();
+    $id=$_POST["bid"];
+    $name=$_POST["update_brand"];
+    
+    $result=$m->update_record("brands",["bid"=> $id],["brand_name"=>$name,"status"=>1]);
+    echo $result;
+    
+
+    exit();
+}
     exit();
 
 

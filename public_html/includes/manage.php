@@ -14,6 +14,9 @@ class Manage
         if($table=="categories"){
             $sql="SELECT p.category_name as category,p.cid as cid,c.category_name as parent,p.status FROM categories p LEFT JOIN categories c ON p.parent_cat=c.cid";
         }
+        if($table=="brands"){
+            $sql="SELECT * FROM brands";
+        }
         $result=$this->con->query($sql) or die($this->con->error);
         $rows=array();
         if($result->num_rows>0){

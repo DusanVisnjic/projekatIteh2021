@@ -95,5 +95,99 @@ $(document).ready(function(){
             }
           }
     })
+      //brend
+      manageBrand();
+      function manageBrand()  {
+        $.ajax({
+          url: DOMAIN + "/includes/process.php",
+          method: "POST",
+        data: { manageBrand: 1 },
+          success: signal,
+        });
+        function signal(data) {
+         
+         $("#get_brand").html(data);
+        }
+      }
+      //fetch brand
+      function fetch_brand()  {
+        $.ajax({
+          url: DOMAIN + "/includes/process.php",
+          method: "POST",
+        data: { getBrand: 1 },
+          success: signal,
+        });
+        function signal(data) {
+         
+          var choose = "<option value='0'>Izaberi</option>";
+          
+          $("#select_brand").html(choose+data);
+        }
+      }
+        fetch_brand();
 
+      //brisi brend
+      $("body").delegate(".del_brand","click",function(){
+        var did = $(this).attr("did");
+       
+        if(confirm("Da li ste sigurni da zelite da obrisete?")){
+              $.ajax({
+                url: DOMAIN + "/includes/process.php",
+                method: "POST",
+                data: { deleteBrand: 1,id:did },
+                success: brisi,
+              });
+              function brisi(data) {
+              if(data.includes("DEPENDENT")){
+                alert("Ne mozete obrisati ovu kategoriju, druge zavise od nje");
+              }else if(data.includes("DELETED")){
+  
+               
+                fetch_brand();
+              }else
+              alert("Ne mozete obrisati, neki proizvod zavisi od ovoga");
+              }
+        }else{
+          
+        }
+        manageBrand();
+    })
+    //promeni brend forma
+    $("#update_brand_form").on("submit",function(){
+      if($("#update_brand").val()==""){
+        $("#update_brand").addClass("border-danger");
+        $("#brand_error").html("<span class='text-danger'>Molim vas unesite ime</span>");
+      }else{
+        $.ajax({
+          url : DOMAIN+"/includes/process.php",
+          method:"POST",
+          data: $("#update_brand_form").serialize(),
+          success: uspeh,   
+      });
+      function uspeh(data){
+        if(data.includes("UPDATED")){
+          alert(data);
+          fetch_brand(); 
+          window.location.href="";
+      }else{
+        alert(data);
+      }
+    }
+  }
+})
+$("body").delegate(".edit_brand","click",function(){
+  var eid = $(this).attr("eid");
+  $.ajax({
+    url: DOMAIN + "/includes/process.php",
+    method: "POST",
+    dataType : "json",
+    data: { updateBrand: 1,id:eid },
+    success: promeni,
+  });
+  function promeni(data){
+      $("#bid").val(data["bid"]);
+      $("#update_brand").val(data["brand_name"]);
+      
+  }
+  })
   })

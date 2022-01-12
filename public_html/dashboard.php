@@ -77,10 +77,10 @@ if(!isset($_SESSION["userid"])){
     <div class="col-md-4">
         <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Medijum pakovanja</h5>
-                    <p class="card-text">Kreiraj novi medijum pakovanja</p>
+                    <h5 class="card-title">Brend</h5>
+                    <p class="card-text">Kreiraj novi brend</p>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#modal2" class="btn btn-primary"><i class="fa fa-plus">&nbsp;</i>Novi</a>
-                    <a href="#" class="btn btn-primary"><i class="fa fa-tasks">&nbsp;</i>Upravljaj</a>        
+                    <a href="manage_brand.php" class="btn btn-primary"><i class="fa fa-tasks">&nbsp;</i>Upravljaj</a>        
                 </div>
         </div>
     </div>
