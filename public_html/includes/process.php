@@ -3,6 +3,7 @@
 include_once("../database/konstante.php");
 include_once("user.php");
 include_once("DBOperation.php");
+include_once("manage.php");
 
 //registracija
 
@@ -72,7 +73,63 @@ if(isset($_POST["added_date"]) AND isset($_POST["product_name"])){
 
     exit();
 }
+//Upravljaj kategorijama
+if(isset($_POST["manageCategory"])){
+    $m = new Manage();
+    $result=$m->manageRecord("categories");
+    $rows=$result["rows"];
+    if(count($rows)>0){
+        $n=0;
+        foreach($rows as $row){
+            ?>
+            
+            <tr>
+                <td><?php echo ++$n; ?></td>
+                <td><?php echo $row["category"]; ?></td>
+                <td><?php echo $row["parent"]; ?></td>
+                <td><a href="#" class="btn btn-success btn-sm">Aktivno</a></td>
+                <td>
+                <a href="#" did="<?php echo $row["cid"]; ?>" class="btn btn-danger btn-sm del_cat">Obrisi</a>
+                <a href="#" eid="<?php echo $row["cid"]; ?>" class="btn btn-info btn-sm edit_cat" data-bs-toggle="modal" data-bs-target="#category">Promeni</a>
+                <!--a href="#" did="<?php echo $row['cid']; ?>" class="btn btn-danger btn-sm del_cat">Obrisi</a>
+               <a href="#" eid="<?php echo $row['cid']; ?>" class="btn btn-info btn-sm edit_cat">Promeni</a-->
+                </td>
+          </tr>
+            <?php
+        }
+    }
+}
+//Obrisi kategoriju
+    if(isset($_POST["deleteCategory"])){
+        $m = new Manage();
+        $result=$m->deleteRecord("categories","cid",$_POST["id"]);
+        echo $result;
+        
+    
+        exit();
+    }
+//uzmi jedan
+if(isset($_POST["updateCategory"])){
+    $m = new Manage();
+    $result=$m->getSingleRecord("categories","cid",$_POST["id"]);
+    echo json_encode($result);
+    
 
+    exit();
+}
+//promeni kategoriju
+if(isset($_POST["update_category"])){
+    $m = new Manage();
+    $id=$_POST["cid"];
+    $name=$_POST["update_category"];
+    $parent=$_POST["parent_cat"];
+    $result=$m->update_record("categories",["cid"=> $id],["parent_cat"=>$parent,"category_name"=>$name,"status"=>1]);
+    echo $result;
+    
+
+    exit();
+}
+    exit();
 
 
 ?>

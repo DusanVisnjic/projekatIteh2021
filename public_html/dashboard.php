@@ -70,7 +70,7 @@ if(!isset($_SESSION["userid"])){
                 <h5 class="card-title">Filmski zanrovi</h5>
                 <p class="card-text">Kreiraj novi zanr</p>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#modal1" class="btn btn-primary"><i class="fa fa-plus">&nbsp;</i>Novi</a>
-                <a href="#" class="btn btn-primary"><i class="fa fa-tasks">&nbsp;</i>Upravljaj</a>
+                <a href="manage_categories.php" class="btn btn-primary"><i class="fa fa-tasks">&nbsp;</i>Upravljaj</a>
             </div>
         </div>
     </div>
