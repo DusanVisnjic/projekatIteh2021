@@ -42,6 +42,7 @@ $(document).ready(function(){
       manageCategory();
   })
   //fetch cat
+
   function fetch_category()  {
     $.ajax({
       url: DOMAIN + "/includes/process.php",
@@ -51,8 +52,9 @@ $(document).ready(function(){
     });
     function signaliraj(data) {
       var root = "<option value='0'>Koren</option>";
-      
+      var choose = "<option value=''>Izaberi</option>";
       $("#parent_cat").html(root+data);
+      $("#select_cat").html(choose+data);
     
     }
   }
@@ -190,4 +192,93 @@ $("body").delegate(".edit_brand","click",function(){
       
   }
   })
+   //proizvod
+   manageProduct();
+   function manageProduct()  {
+     $.ajax({
+       url: DOMAIN + "/includes/process.php",
+       method: "POST",
+     data: { manageProduct: 1 },
+       success: signal,
+     });
+     function signal(data) {
+      
+      $("#get_product").html(data);
+     }
+   }
+   //brisi proizvod
+   $("body").delegate(".del_product","click",function(){
+    var did = $(this).attr("did");
+   
+    if(confirm("Da li ste sigurni da zelite da obrisete?")){
+          $.ajax({
+            url: DOMAIN + "/includes/process.php",
+            method: "POST",
+            data: { deleteProduct: 1,id:did },
+            success: brisi,
+          });
+          function brisi(data) {
+          if(data.includes("DEPENDENT")){
+            alert("Ne mozete obrisati ovu kategoriju, druge zavise od nje");
+          }else if(data.includes("DELETED")){
+
+           
+          
+          }else
+          alert("Ne mozete obrisati, neki proizvod zavisi od ovoga");
+          }
+    }else{
+      
+    }
+    manageProduct();
+})
+//promeni proizvod
+$("body").delegate(".edit_product","click",function(){
+  
+  var eid = $(this).attr("eid");
+
+  $.ajax({
+    url: DOMAIN + "/includes/process.php",
+    method: "POST",
+    dataType : "json",
+    data: { updateProduct: 1,id:eid },
+    success: menjaj,
+  });
+  function menjaj(data){
+    console.log(data);
+      $("#pid").val(data["pid"]);
+      $("#update_product").val(data["product_name"]);
+      $("#select_cat").val(data["cid"]);
+      $("#select_brand").val(data["bid"]);
+      $("#product_price").val(data["product_price"]);
+      $("#product_qty").val(data["product_stock"]);
+     
+      
+    }
+  })
+  //promeni proizvod
+  $("#update_product_form").on("submit",function(){
+    // if($("#brand_name").val()==""){
+     //  $("#brand_name").addClass("border-danger");
+     //  $("#brand_error").html("<span class='text-danger'>Molim vas unesite ime</span>");
+    // }else{
+       $.ajax({
+         url : DOMAIN+"/includes/process.php",
+         method:"POST",
+         data: $("#update_product_form").serialize(),
+         success: uspelo,   
+     });
+     function uspelo(data){
+       if(data.includes("UPDATED")){
+        alert(data);
+        manageProduct();
+          window.location.href="";
+     }else{
+       alert(data+"nije uspelo");
+     }
+  // }
+   }
+   })
+//promeni proizvod
+
   })

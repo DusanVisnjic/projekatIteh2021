@@ -154,7 +154,7 @@ if(isset($_POST["manageBrand"])){
         }
     }
 }
-//Obrisi kategoriju
+//Obrisi BREND
 if(isset($_POST["deleteBrand"])){
     $m = new Manage();
     $result=$m->deleteRecord("brands","bid",$_POST["id"]);
@@ -179,6 +179,72 @@ if(isset($_POST["update_brand"])){
     $name=$_POST["update_brand"];
     
     $result=$m->update_record("brands",["bid"=> $id],["brand_name"=>$name,"status"=>1]);
+    echo $result;
+    
+
+    exit();
+}
+//Upravljaj proizvodima
+if(isset($_POST["manageProduct"])){
+    $m = new Manage();
+    $result=$m->manageRecord("products");
+    $rows=$result["rows"];
+    if(count($rows)>0){
+        $n=0;
+        foreach($rows as $row){
+            ?>
+            
+            <tr>
+                <td><?php echo ++$n; ?></td>
+                <td><?php echo $row["product_name"]; ?></td>
+                <td><?php echo $row["category_name"]; ?></td>
+                <td><?php echo $row["brand_name"]; ?></td>
+                <td><?php echo $row["product_price"]; ?></td>
+                <td><?php echo $row["product_stock"]; ?></td>
+                <td><?php echo $row["added_date"]; ?></td>
+              
+                <td><a href="#" class="btn btn-success btn-sm">Aktivno</a></td>
+                <td>
+                <a href="#" did="<?php echo $row["pid"]; ?>" class="btn btn-danger btn-sm del_product">Obrisi</a>
+                <a href="#" eid="<?php echo $row["pid"]; ?>" class="btn btn-info btn-sm edit_product" data-bs-toggle="modal" data-bs-target="#product">Promeni</a>
+                <!--a href="#" did="<?php echo $row['cid']; ?>" class="btn btn-danger btn-sm del_cat">Obrisi</a>
+               <a href="#" eid="<?php echo $row['cid']; ?>" class="btn btn-info btn-sm edit_cat">Promeni</a-->
+                </td>
+          </tr>
+            <?php
+        }
+    }
+}
+//Obrisi PROIZVOD
+if(isset($_POST["deleteProduct"])){
+    $m = new Manage();
+    $result=$m->deleteRecord("products","pid",$_POST["id"]);
+    echo $result;
+    
+
+    exit();
+}
+//uzmi jedan
+if(isset($_POST["updateProduct"])){
+    $m = new Manage();
+    $result=$m->getSingleRecord("products","pid",$_POST["id"]);
+    
+    echo json_encode($result);
+    
+
+    exit();
+}
+//promeni proizvod
+if(isset($_POST["update_product"])){
+    $m = new Manage();
+    $id=$_POST["pid"];
+    $name=$_POST["update_product"];
+    $cat=$_POST["select_cat"];
+    $brand=$_POST["select_brand"];
+    $price=$_POST["product_price"];
+    $qty=$_POST["product_qty"];
+    $date=$_POST["added_date"];
+    $result=$m->update_record("products",["pid"=> $id],["cid"=>$cat,"bid"=>$brand,"product_name"=>$name,"product_price"=>$price,"product_stock"=>$qty,"added_date"=>$date]);
     echo $result;
     
 

@@ -90,7 +90,7 @@ if(!isset($_SESSION["userid"])){
                     <h5 class="card-title">Filmovi</h5>
                     <p class="card-text">Kreiraj novi film</p>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#modal3" class="btn btn-primary"><i class="fa fa-plus">&nbsp;</i>Novi</a>
-                    <a href="#" class="btn btn-primary"><i class="fa fa-tasks">&nbsp;</i>Upravljaj</a>
+                    <a href="manage_product.php" class="btn btn-primary"><i class="fa fa-tasks">&nbsp;</i>Upravljaj</a>
                 </div>
         </div>
     </div>

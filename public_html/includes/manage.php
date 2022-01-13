@@ -17,6 +17,9 @@ class Manage
         if($table=="brands"){
             $sql="SELECT * FROM brands";
         }
+        if($table=="products"){
+            $sql="SELECT p.product_name,p.pid,c.category_name,b.brand_name,p.product_price,p.product_stock,p.added_date,p.p_status FROM products p,brands b,categories c WHERE p.bid=b.bid AND p.cid=c.cid";
+        }
         $result=$this->con->query($sql) or die($this->con->error);
         $rows=array();
         if($result->num_rows>0){
