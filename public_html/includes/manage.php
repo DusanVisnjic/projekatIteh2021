@@ -9,6 +9,7 @@ class Manage
         $db=new Database();
         $this->con=$db->connect();
     }
+    //povuci podatke za prikaz tabela
     public function manageRecord($table){
         
         if($table=="categories"){
@@ -29,6 +30,7 @@ class Manage
         }
         return ["rows"=>$rows];
     }
+    //brisanje reda
     public function deleteRecord($table,$pk,$id){
         if($table=="categories"){
             $pre_stmt=$this->con->prepare("SELECT ".$id." FROM categories WHERE parent_cat= ?");
@@ -56,6 +58,7 @@ class Manage
             }
         }
     }
+    //povuci jedan red
     public function getSingleRecord($table,$pk,$id){
         $pre_stmt=$this->con->prepare("SELECT * FROM ".$table." WHERE ".$pk."= ?");
         $pre_stmt->bind_param("i",$id);
@@ -66,6 +69,7 @@ class Manage
         }
         return $row;
     }
+    //promeni red
     public function update_record($table,$where,$fields){
         $sql= "";
         $condition= "";

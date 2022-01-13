@@ -73,7 +73,7 @@ if(isset($_POST["added_date"]) AND isset($_POST["product_name"])){
 
     exit();
 }
-//Upravljaj kategorijama
+//Upravljaj kategorijama formiranje tabele
 if(isset($_POST["manageCategory"])){
     $m = new Manage();
     $result=$m->manageRecord("categories");
@@ -108,7 +108,7 @@ if(isset($_POST["manageCategory"])){
     
         exit();
     }
-//uzmi jedan
+//uzmi jedan red
 if(isset($_POST["updateCategory"])){
     $m = new Manage();
     $result=$m->getSingleRecord("categories","cid",$_POST["id"]);
@@ -129,6 +129,7 @@ if(isset($_POST["update_category"])){
 
     exit();
 }
+//Upravljaj brendovima formiranje tabele
 if(isset($_POST["manageBrand"])){
     $m = new Manage();
     $result=$m->manageRecord("brands");
@@ -163,7 +164,7 @@ if(isset($_POST["deleteBrand"])){
 
     exit();
 }
-//uzmi jedan
+//uzmi jedan brend
 if(isset($_POST["updateBrand"])){
     $m = new Manage();
     $result=$m->getSingleRecord("brands","bid",$_POST["id"]);
@@ -184,7 +185,7 @@ if(isset($_POST["update_brand"])){
 
     exit();
 }
-//Upravljaj proizvodima
+//Upravljaj proizvodima formiranje tabele
 if(isset($_POST["manageProduct"])){
     $m = new Manage();
     $result=$m->manageRecord("products");
@@ -224,7 +225,7 @@ if(isset($_POST["deleteProduct"])){
 
     exit();
 }
-//uzmi jedan
+//uzmi jedan prozivod
 if(isset($_POST["updateProduct"])){
     $m = new Manage();
     $result=$m->getSingleRecord("products","pid",$_POST["id"]);

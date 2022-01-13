@@ -42,6 +42,7 @@ class User
             return 0;
         }
     }
+    //novi acc
     public function createUserAccount($username,$email,$password,$usertype){
         
         if($this->emailExist($email))
@@ -68,6 +69,7 @@ class User
                 }
         }
     }
+    //login
     public function userLogin($email,$password){
         
         $pre_stmt=$this->con->prepare("SELECT id,username,password,last_login FROM user WHERE email=?");

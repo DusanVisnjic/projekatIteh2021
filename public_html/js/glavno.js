@@ -1,7 +1,7 @@
 $(document).ready(function(){
   
     var DOMAIN="http://localhost/iteh/projekatIteh/public_html/";
-    
+    //registracija
     $("#register_form").on("submit",function(){
      
        var status=false;
@@ -138,10 +138,10 @@ $(document).ready(function(){
             }
       }
     })
-      //dodaj kategoriju
+      
      
      //Kategorije
-     
+     //uzmi kategorije
       function fetch_category()  {
       $.ajax({
         url: DOMAIN + "/includes/process.php",
@@ -159,6 +159,7 @@ $(document).ready(function(){
       fetch_category(); 
 
       //Brend
+     //brendovi
      
       function fetch_brand()  {
         $.ajax({
@@ -249,6 +250,7 @@ $(document).ready(function(){
  // }
   }
   })
+  //pretraga reffresh
   $("#live-search").dblclick(function(){
     var input=$(this).val();
     if(input==""){

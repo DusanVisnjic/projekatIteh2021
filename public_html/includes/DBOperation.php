@@ -11,7 +11,7 @@ class DBOperation
         $db=new Database();
         $this->con=$db->connect();
     }
-
+    //dodaj novu kategoriju
     public function addCategory($parent,$cat){
         $pre_stmt=$this->con->prepare("INSERT INTO `categories`( `parent_cat`, `category_name`, `status`)  
                 VALUES (?,?,?)");
@@ -24,6 +24,7 @@ class DBOperation
             return 0;
         }
     }
+    //povuci sve podatke iz tabele
     public function getAllRecord($table){
         $pre_stmt=$this->con->prepare("SELECT * FROM " .$table);
         $pre_stmt->execute() or die($this->con->error);
@@ -37,6 +38,7 @@ class DBOperation
         }
         return "NO_DATA";
     }
+    //dodaj novi brend
     public function addBrand($brand_name){
         $pre_stmt=$this->con->prepare("INSERT INTO `brands`(`brand_name`, `status`)  
                 VALUES (?,?)");
@@ -49,6 +51,7 @@ class DBOperation
             return 0;
         }
     }
+    //dodaj novi proizvod
     public function addProduct($cid,$bid,$pro_name,$price,$stock,$date){
         $pre_stmt=$this->con->prepare("INSERT INTO `products`(`cid`, `bid`, `product_name`, `product_price`, `product_stock`, `added_date`, `p_status`)
          VALUES (?,?,?,?,?,?,?)");

@@ -59,7 +59,7 @@ $(document).ready(function(){
     }
   }
     fetch_category(); 
-  //Promeni kategoriku
+  //Promeni kategorjku
   $("body").delegate(".edit_cat","click",function(){
     var eid = $(this).attr("eid");
     $.ajax({
@@ -177,6 +177,7 @@ $(document).ready(function(){
     }
   }
 })
+//promeni brend
 $("body").delegate(".edit_brand","click",function(){
   var eid = $(this).attr("eid");
   $.ajax({
@@ -232,7 +233,7 @@ $("body").delegate(".edit_brand","click",function(){
     }
     manageProduct();
 })
-//promeni proizvod
+//promeni proizvod forma
 $("body").delegate(".edit_product","click",function(){
   
   var eid = $(this).attr("eid");
@@ -276,9 +277,8 @@ $("body").delegate(".edit_product","click",function(){
      }else{
        alert(data+"nije uspelo");
      }
-  // }
+  
    }
    })
-//promeni proizvod
 
   })
