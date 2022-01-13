@@ -249,6 +249,31 @@ $(document).ready(function(){
  // }
   }
   })
- 
+  $("#live-search").dblclick(function(){
+    var input=$(this).val();
+    if(input==""){
+      window.location.href="";
+    }
+  })
+ //pretraga
+ $("#live-search").keyup(function(){
+      var input=$(this).val();
+      
+      if(input !=""){
+        $.ajax({
+          url : DOMAIN+"/includes/process.php",
+          method:"POST",
+          data: {input:input},
+          success: uspelo,   
+      });
+      function uspelo(data){
+        $("#searchresult").html(data);
+   // }
+    }
+  }else{
+    $("#searchresult").css("display","none");
+  }
+
+ })
     
 })

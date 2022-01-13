@@ -60,7 +60,7 @@ if(isset($_SESSION["userid"])){
           <span><a href="register.php">Registruj se</a></span>
         </form>
   </div>
-  <div class="card-footer"><a href="#">Zaboravio password?</a></div>
+ 
 </div>
 </div>
 

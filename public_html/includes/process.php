@@ -250,6 +250,37 @@ if(isset($_POST["update_product"])){
 
     exit();
 }
+//pretraga
+if(isset($_POST["input"])){
+    $input=$_POST["input"];
+    $user=new User();
+    $result=$user->search($input);
+    $rows=$result["rows"];
+    if(count($rows)>0){
+        $n=0;
+        ?>
+        
+        <?php
+        foreach($rows as $row){
+          
+            ?>
+            
+            <tr>
+                <td><?php echo ++$n; ?></td>
+                <td><?php echo $row['username']; ?></td>
+                <td><?php echo $row["email"]; ?></td>
+                <td><?php echo $row["register_date"]; ?></td>
+                <td><?php echo $row["last_login"]; ?></td>
+                
+          </tr>
+            <?php
+        }
+    }else{
+       echo "<h6 class='text-danger text-center mt-3'>Nepostoje podaci</h6>" ;
+    }
+
+    exit();
+}
     exit();
 
 

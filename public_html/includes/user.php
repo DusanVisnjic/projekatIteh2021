@@ -12,12 +12,27 @@ class User
         
    
     }
+    //pretraga
+    public function search($input){
+        $sql="SELECT * FROM user WHERE email LIKE '{$input}%'";
+        $result=$this->con->query($sql) or die($this->con->error);
+       
+        $rows=array();
+        if($result->num_rows>0){
+            while($row=$result->fetch_assoc()){
+                $rows[]=$row;
+            }
+        }
+        return ["rows"=>$rows];
+       
+    }
    //Vec registrovan korisnik
     private function emailExist($email){
         $pre_stmt=$this->con->prepare("SELECT id FROM user WHERE email=? ");
         $pre_stmt->bind_param("s",$email);
         $pre_stmt->execute() or die($this->con->error);
         $result=$pre_stmt->get_result();
+
         if($result->num_rows>0)
         {
             return 1;
@@ -93,7 +108,8 @@ class User
     }
 
 }
-//user=new User();
+//$user=new User();
+//print_r($user->search("testi"));
 //echo $user->createUserAccount("test5","testi5@gmail.com","d12345787jkj", "Admin");
 //echo    $user->userLogin("testi@gmail.com","d12345");
 //echo $_SESSION["username"];

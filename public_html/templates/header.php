@@ -16,6 +16,19 @@
             <li class="nav-item active">
          
             <a class="nav-link" href="http://localhost/iteh/projekatIteh/public_html/templates/logout.php"  ><i class="fa fa-user">&nbsp;</i>Logout</a>
+           
+       
+            <?php
+           
+        
+          ?>
+          
+          </li>
+          ?> 
+            <li class="nav-item active">
+         
+           
+            <a class="nav-link" href="http://localhost/iteh/projekatIteh/public_html/pretraga.php"  ><i class="fa fa-search">&nbsp;</i>Pretrazi</a>
        
             <?php
            

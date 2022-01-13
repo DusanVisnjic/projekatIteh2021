@@ -24,21 +24,21 @@ if(!isset($_SESSION["userid"])){
 <br></br>
 
 
-<div class="container">
+<div class="container center">
     <div class="row">
         <div class="col-md-4"> 
             <div class="card mx-auto" >
                 <img src="./images/user.png" class="card-img-top mx-auto" alt="..." style="width:60%;">
-                <div class="card-body">
+                <!--div class="card-body">
                     <h5 class="card-title"><i class="fa fa-info">&nbsp;</i>Informacije profila</h5>
                     <p class="card-text"><i class="fa fa-user">&nbsp;</i>Dusan Visnjic</p>
                     <p class="card-text"><i class="fa fa-user">&nbsp;</i>Admin</p>
                     <p class="card-text">Poslednje ulogovan: xxxx-xx-xx</p>
                     <a href="#" class="btn btn-primary"><i class="fa fa-edit">&nbsp;</i>Izmeni profil</a>
-                </div>
+                </div-->
             </div>
         </div>
-        <div class="col-md-8"> 
+        <!--div class="col-md-8"> 
             <div class="jumbotron" style="width: 100%;height:100%;">
                 <h1>Dobrodosli,</h1>
                 <div class="row">
@@ -60,16 +60,16 @@ if(!isset($_SESSION["userid"])){
             </div> 
         </div>
     </div>
-</div>
+</div-->
 <br></br>
 <div class="container">
   <div class="row">
     <div class="col-md-4">
         <div class="card">
             <div class="card-body" >
-                <h5 class="card-title">Filmski zanrovi</h5>
-                <p class="card-text">Kreiraj novi zanr</p>
-                <a href="#" data-bs-toggle="modal" data-bs-target="#modal1" class="btn btn-primary"><i class="fa fa-plus">&nbsp;</i>Novi</a>
+                <h5 class="card-title">Kategorija</h5>
+                <p class="card-text">Kreiraj novu kategoriju</p>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modal1" class="btn btn-primary"><i class="fa fa-plus">&nbsp;</i>Nova</a>
                 <a href="manage_categories.php" class="btn btn-primary"><i class="fa fa-tasks">&nbsp;</i>Upravljaj</a>
             </div>
         </div>
@@ -87,8 +87,8 @@ if(!isset($_SESSION["userid"])){
     <div class="col-md-4">
         <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Filmovi</h5>
-                    <p class="card-text">Kreiraj novi film</p>
+                    <h5 class="card-title">Proizvod</h5>
+                    <p class="card-text">Kreiraj novi proizvod</p>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#modal3" class="btn btn-primary"><i class="fa fa-plus">&nbsp;</i>Novi</a>
                     <a href="manage_product.php" class="btn btn-primary"><i class="fa fa-tasks">&nbsp;</i>Upravljaj</a>
                 </div>
